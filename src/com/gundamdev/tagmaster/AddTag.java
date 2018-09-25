@@ -16,19 +16,21 @@ import com.intellij.psi.util.PsiTreeUtil;
  */
 public class AddTag extends AnAction {
 
-    public static final String TAG_TEMPLATE = "final static String TAG = %s.class.getSimpleName();";
+    public static final String TAG_TEMPLATE = "private final static String TAG = %s.class.getSimpleName();";
 
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
         PsiFile psiFile = anActionEvent.getData(DataKeys.PSI_FILE);
-        if (psiFile != null) {
-            String className = psiFile.getName().split("\\.")[0];
-            String fileRawName = String.format(TAG_TEMPLATE, className);
-
-            Editor editor = anActionEvent.getData(DataKeys.EDITOR);
-            TagCreator tagCreator = new TagCreator(fileRawName, psiFile.getProject(), getTargetClass(editor, psiFile), psiFile);
-            tagCreator.execute();
+        if (psiFile == null) {
+            return;
         }
+        String className = psiFile.getName().split("\\.")[0];
+        String fileRawName = String.format(TAG_TEMPLATE, className);
+
+        Editor editor = anActionEvent.getData(DataKeys.EDITOR);
+        TagCreator tagCreator = new TagCreator(fileRawName, psiFile.getProject(),
+                getTargetClass(editor, psiFile), psiFile);
+        tagCreator.execute();
     }
 
     public static class TagCreator extends WriteCommandAction.Simple {

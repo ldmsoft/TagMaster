@@ -1,0 +1,35 @@
+<idea-plugin>
+  <id>com.gundamdev.tagmaster</id>
+  <name>TagMaster</name>
+  <version>0.1</version>
+  <vendor email="ldmsoft@qq.com" url="http://www.gundamdev.com">GundamDev</vendor>
+
+  <description><![CDATA[
+      Create class TAG quickly.<br>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      ·First version.<br>
+    ]]>
+  </change-notes>
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="TagMaster.AddTag" class="com.gundamdev.tagmaster.AddTag" text="AddTag" description="AddTag">
+      <add-to-group group-id="GenerateGroup" anchor="last"/>
+    </action>
+  </actions>
+
+</idea-plugin>
